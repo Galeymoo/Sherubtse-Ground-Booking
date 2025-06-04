@@ -32,6 +32,13 @@ header {
   border-radius: 12px;
 }
 
+.header-left h1 {
+  margin: 0;
+  font-size: 18px;
+  font-weight: 500;
+  color: #ffffff;
+}
+  
 .header-title-container {
   display: flex;
   flex-direction: column;
@@ -190,38 +197,33 @@ footer {
 @media (max-width: 768px) {
   header {
     flex-direction: row;
+    align-items: flex-start;
     justify-content: space-between;
-    align-items: center;
-    padding: 0.7rem 1rem;
+    padding: 1rem 1rem;
   }
 
   .header-left {
-    flex-direction: row;
-    align-items: center;
-    gap: 0.5rem;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.3rem;
   }
 
   .header-left img {
-    height: 45px;
+    height: 42px;
   }
 
-  .header-title-container {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    margin-top: 0.2rem;
-  }
-
-  .header-title-container h1 {
+  .header-left h1 {
     font-size: 14px;
+    font-weight: 500;
+    margin: 2px 0 0;
     line-height: 1.2;
-    text-align: left;
-    white-space: normal;
+    color: #ffffff;
   }
 
   .hamburger {
     display: block;
     font-size: 1.8rem;
+    margin-top: 0.2rem;
   }
 
   nav {
@@ -251,12 +253,14 @@ footer {
   }
 
   nav ul li a {
-    font-size: 1.2rem;
+    font-size: 1.1rem;
   }
 
   #closeMenu {
     display: block;
   }
+}
+
 
   .footer-container {
     flex-direction: column;
