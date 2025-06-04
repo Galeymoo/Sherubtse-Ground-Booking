@@ -21,25 +21,27 @@ header {
   z-index: 1000;
 }
 
-/* Header left container: logo + title */
 .header-left {
   display: flex;
   align-items: center;
   gap: 1rem;
-  flex: 1;
 }
 
 .header-left img {
-  height: 60px;
-  margin-right: 15px;
+  height: 50px;
   border-radius: 12px;
 }
 
-.header-left h1 {
-  color: #ffffff;
+.header-title-container {
+  display: flex;
+  flex-direction: column;
+}
+
+.header-title-container h1 {
+  margin: 0;
   font-size: 18px;
-  font-weight: normal;
-  white-space: nowrap;
+  color: #ffffff;
+  font-weight: 500;
 }
 
 /* ===== Hamburger ===== */
@@ -49,6 +51,10 @@ header {
   color: #fff;
   font-size: 2rem;
   cursor: pointer;
+  display: none;
+}
+
+.hamburger.hidden {
   display: none;
 }
 
@@ -182,9 +188,40 @@ footer {
 
 /* ===== Responsive Design ===== */
 @media (max-width: 768px) {
+  header {
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.7rem 1rem;
+  }
+
+  .header-left {
+    flex-direction: row;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  .header-left img {
+    height: 45px;
+  }
+
+  .header-title-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin-top: 0.2rem;
+  }
+
+  .header-title-container h1 {
+    font-size: 14px;
+    line-height: 1.2;
+    text-align: left;
+    white-space: normal;
+  }
+
   .hamburger {
     display: block;
-    margin-left: auto;
+    font-size: 1.8rem;
   }
 
   nav {
@@ -236,26 +273,5 @@ footer {
   .footer-section {
     align-items: center;
     text-align: center;
-  }
-
-  header {
-    flex-direction: row;
-    align-items: center;
-    justify-content: space-between;
-  }
-
-  .header-left {
-    flex-direction: row;
-    align-items: center;
-    justify-content: space-between;
-    width: 100%;
-  }
-
-  .header-left h1 {
-    font-size: 16px;
-    white-space: nowrap;
-    text-align: left;
-    margin-top: 0;
-    padding-left: 0.5rem;
   }
 }
