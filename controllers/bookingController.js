@@ -1,14 +1,11 @@
 const { GroundSlot, Booking, User } = require('../models');
 
 const { Op } = require('sequelize');
+
+// Show booking page with all slots and existing bookings
 exports.showBookingPage = async (req, res) => {
   try {
     const userId = req.session.user?.id || null;
-    let user = null;
-
-    if (userId) {
-      user = await User.findByPk(userId);
-    }
 
     const allSlots = await GroundSlot.findAll({
       where: {
@@ -25,9 +22,9 @@ exports.showBookingPage = async (req, res) => {
     });
 
     res.render('booking', {
-      availableSlots: allSlots,
+      availableSlots: allSlots, // Show all slots regardless of booking
       bookedSlots,
-      user // ✅ pass the full user object here
+      userId
     });
 
   } catch (err) {
@@ -35,7 +32,6 @@ exports.showBookingPage = async (req, res) => {
     res.status(500).send("Internal Server Error");
   }
 };
-
 
 // Handle slot booking
 exports.bookSlot = async (req, res) => {
