@@ -1,0 +1,413 @@
+/* === Base Styles === */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Inter';
+  margin: 0;
+  padding: 0;
+  background-color: #f4f8f3;
+  color: #2C5530;
+  overflow-x: hidden;
+}
+
+.container {
+  max-width: 1000px;
+  width: 100%;
+  margin: 30px auto;
+  padding: 0 15px;
+}
+
+/* === Headings === */
+h1, h2 {
+  color: #2C5530;
+  margin-bottom: 15px;
+  font-size: 1.8rem;
+}
+
+@media (max-width: 480px) {
+  h1, h2 {
+    font-size: 1.3rem;
+    text-align: center;
+  }
+}
+
+/* === Form Card === */
+form#slotsForm {
+  background-color: #ffffff;
+  padding: 25px 20px;
+  border-radius: 8px;
+  border: 2px solid #8DB600;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  margin-bottom: 40px;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+/* === Form Title === */
+form#slotsForm h2 {
+  text-align: center;
+  font-size: 1.5rem;
+  color: #2C5530;
+  margin-bottom: 20px;
+}
+
+/* === Form Labels and Inputs === */
+label {
+  display: block;
+  margin-bottom: 6px;
+  font-weight: bold;
+  color: #555;
+}
+
+input[type="text"],
+input[type="time"],
+input[type="datetime-local"] {
+  padding: 8px 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 14px;
+  width: 100%;
+  max-width: 200px;
+  margin-bottom: 10px;
+  box-sizing: border-box;
+}
+
+/* === Slots Container === */
+#slotsContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+#slotsContainer .slot {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  border: 2px solid #8DB600;
+  border-radius: 6px;
+  padding: 15px;
+  align-items: center;
+}
+
+#slotsContainer .slot input {
+  flex: 1;
+  min-width: 120px;
+}
+
+/* === Remove Button === */
+button.remove {
+  background-color: #FF4444;
+  padding: 6px 12px;
+  border: none;
+  color: white;
+  font-size: 14px;
+  cursor: pointer;
+  border-radius: 4px;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  transition: background-color 0.3s ease;
+}
+
+button.remove:hover {
+  background-color: #cc0000;
+}
+
+/* === Add / Submit Buttons === */
+.form-buttons {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin-top: 15px;
+}
+
+.form-buttons button {
+  background-color: #8DB600;
+  border: none;
+  color: white;
+  padding: 8px 16px;
+  font-size: 14px;
+  cursor: pointer;
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  transition: background-color 0.3s ease;
+}
+
+.form-buttons button:hover {
+  background-color: #739800;
+}
+
+/* Edit button with #8DB600 green */
+button.edit {
+  background-color: #8DB600;
+  color: white;
+  border: none;
+  padding: 6px 12px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 14px;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  transition: background-color 0.3s ease;
+}
+
+button.edit:hover {
+  background-color: #729900;
+}
+
+
+/* Delete button in red */
+table tbody tr form button.delete {
+  background-color: #e74c3c; /* Red */
+  color: white;
+  border: none;
+  padding: 6px 12px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 14px;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  transition: background-color 0.3s ease;
+}
+
+table tbody tr form button.delete:hover {
+  background-color: #c0392b; /* Darker red for hover */
+}
+
+
+/* === Tabs === */
+.tabs {
+  display: flex;
+  gap: 1rem;
+  border-bottom: 2px solid #ccc;
+  margin: 20px 0 10px;
+  overflow-x: auto;
+  white-space: nowrap;
+}
+
+.tab-button {
+  padding: 10px 20px;
+  font-weight: bold;
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: #333;
+  position: relative;
+}
+
+.tab-button:hover,
+.tab-button:focus {
+  background: none;
+  color: #333;
+}
+
+.tab-button::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background-color: #2C5530;
+  transform: scaleX(0);
+  transform-origin: center;
+  transition: transform 0.3s ease;
+}
+
+.tab-button:hover::after,
+.tab-button.active::after {
+  transform: scaleX(1);
+}
+
+.tab-content {
+  border: 1px solid #ccc;
+  padding: 15px;
+  background-color: #fff;
+  border-radius: 0 4px 4px 4px;
+  margin-top: -1px;
+}
+
+
+
+/* === Tables === */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 2rem;
+}
+
+thead {
+  background-color: #8DB600;
+  color: white;
+}
+
+thead th {
+  padding: 14px;
+  text-align: left;
+}
+
+tbody td {
+  padding: 12px;
+  vertical-align: middle;
+}
+
+table th, table td {
+  border: 1px solid #ddd;
+}
+
+table tr:nth-child(even) {
+  background-color: #f9f9f9;
+}
+
+/* Target only the action buttons inside the All Bookings table */
+#bookingsTab td:last-child {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 6px;
+}
+
+/* Group the first two forms (Approve + Reject) side by side */
+#bookingsTab td:last-child form:nth-child(1),
+#bookingsTab td:last-child form:nth-child(2) {
+  display: inline-block;
+  margin-right: 6px;
+}
+
+/* Wrap first two forms in a horizontal container */
+#bookingsTab td:last-child {
+  flex-wrap: wrap;
+}
+
+#bookingsTab td:last-child form:nth-child(3) {
+  margin-top: 4px;
+}
+
+/* === Responsive Design === */
+@media (max-width: 768px) {
+  input,
+  button,
+  .form-buttons button {
+    width: 100%;
+  }
+
+  #slotsContainer .slot {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .form-buttons {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  table {
+    display: block;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  th, td {
+    white-space: nowrap;
+  }
+
+  .tab-button {
+    padding: 8px 14px;
+  }
+
+  .tab-content {
+    padding: 12px;
+  }
+}
+
+@media (max-width: 480px) {
+  .tab-button {
+    font-size: 13px;
+  }
+
+  form#slotsForm h2 {
+    font-size: 1.3rem;
+  }
+
+  button {
+    font-size: 13px;
+    padding: 8px 12px;
+  }
+
+  h1, h2 {
+    font-size: 1.2rem;
+  }
+
+ /* Stack each booking row's buttons neatly on small screens */
+  #bookingsTab td:last-child {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  #bookingsTab td:last-child .action-row {
+    display: flex;
+    justify-content: space-between;
+    gap: 6px;
+    flex-wrap: wrap;
+  }
+
+
+  #bookingsTab td:last-child form {
+    width: 100%;
+  }
+
+  #bookingsTab td:last-child form.delete-form {
+    margin-top: 6px;
+  }
+}
+
+@media (max-width: 480px) {
+  /* Allow horizontal scrolling on smaller screens */
+  table {
+    display: block;
+    overflow-x: auto;
+    width: 100%;
+  }
+
+  /* Ensure action buttons stay inside the table cell */
+  #slotsTab td:last-child {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    align-items: stretch;
+    padding: 10px 0; /* Optional: add padding to make it cleaner */
+    box-sizing: border-box;
+    min-width: 120px; /* Prevent collapsing too much */
+  }
+
+  #slotsTab td:last-child form {
+    width: 100%;
+  }
+
+  #slotsTab td:last-child button.edit,
+  #slotsTab td:last-child button.delete {
+    width: 100%;
+    justify-content: center;
+    font-size: 13px;
+    padding: 10px 12px;
+    text-align: center;
+    white-space: nowrap;
+  }
+
+  /* Prevent table cells from overflowing */
+  td, th {
+    max-width: 100%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+}
+

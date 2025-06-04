@@ -1,0 +1,55 @@
+<header>
+  <div class="header-left">
+    <img src="/images/logo.png" alt="Sherubtse Logo" />
+    <h1>Sherubtse Football Ground Booking</h1>
+  </div>
+
+  <!-- Hamburger Icon -->
+  <button class="hamburger" id="hamburger" aria-label="Toggle navigation menu" aria-expanded="false" aria-controls="navMenu">&#9776;</button>
+
+  <!-- Navigation Menu -->
+  <nav id="navMenu" role="navigation" aria-label="Main navigation">
+    <button id="closeMenu" aria-label="Close navigation menu">&times;</button>
+    <ul>
+      <li><a href="/book">Book</a></li>
+      <li><a href="/booking">My Bookings</a></li>
+      <li><a href="/contact">Contact</a></li>
+      <li><a href="/logout">Logout</a></li>
+    </ul>
+  </nav>
+</header>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const hamburger = document.getElementById('hamburger');
+    const navMenu = document.getElementById('navMenu');
+    const closeBtn = document.getElementById('closeMenu');
+
+    const openMenu = () => {
+      navMenu.classList.add('show');
+      hamburger.classList.add('hidden');
+      document.body.style.overflow = 'hidden';
+      hamburger.setAttribute('aria-expanded', 'true');
+    };
+
+    const closeMenu = () => {
+      navMenu.classList.remove('show');
+      hamburger.classList.remove('hidden');
+      document.body.style.overflow = '';
+      hamburger.setAttribute('aria-expanded', 'false');
+    };
+
+    hamburger.addEventListener('click', openMenu);
+    closeBtn.addEventListener('click', closeMenu);
+
+    document.addEventListener('click', (event) => {
+      if (
+        navMenu.classList.contains('show') &&
+        !navMenu.contains(event.target) &&
+        !hamburger.contains(event.target)
+      ) {
+        closeMenu();
+      }
+    });
+  });
+</script>

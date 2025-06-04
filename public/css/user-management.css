@@ -1,0 +1,144 @@
+/* === General Styles === */
+body {
+  font-family: "Inter";
+  background-color: #f4f8f3;
+  margin: 0;
+  padding: 0;
+  color: #537D5D;
+  line-height: 1.6;
+}
+
+
+/* Container */
+
+main.container h1 {
+  margin-top: 2.5rem;
+  margin-bottom: 1.5rem;
+  text-align: center;
+  font-size: 1.8rem;
+  color: #2C5530;
+}
+.container {
+  padding: 40px 5%;
+  max-width: 1200px;
+  margin: auto;
+}
+
+
+/* Table Styling */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  background-color: #ffffff;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+/* Table Header */
+thead {
+  background-color: #ffffff;
+  color: #2C5530;
+}
+
+th, td {
+  padding: 14px 18px;
+  text-align: left;
+  font-size: 15px;
+  border-bottom: 1px solid #D2D0A0;
+}
+
+tbody tr:nth-child(even) {
+  background-color: #f9f9f9;
+}
+
+/* Actions Cell */
+td[data-label="Actions"] {
+  text-align: center;
+}
+
+/* Delete Button */
+button {
+  background-color: #b91c1c;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  padding: 8px 14px;
+  cursor: pointer;
+  font-family: "Inter", sans-serif;
+  font-weight: 600;
+  transition: background-color 0.2s ease;
+  box-shadow: 0 2px 6px rgba(185, 28, 28, 0.5);
+}
+
+button:hover {
+  background-color: #991b1b;
+  box-shadow: 0 4px 8px rgba(153, 27, 27, 0.7);
+}
+
+/* === RESPONSIVE TABLE for MOBILE === */
+@media (max-width: 768px) {
+  table, thead, tbody, th, td, tr {
+    display: block;
+    width: 100%;
+  }
+
+  thead {
+    display: none; /* hide header */
+  }
+
+  tr {
+    background: white;
+    margin-bottom: 15px;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.05);
+    border-radius: 8px;
+    padding: 15px 20px;
+    box-sizing: border-box;
+  }
+
+  td {
+    /* Make cells behave like rows */
+    padding: 10px 10px 10px 120px;
+    position: relative;
+    text-align: left;
+    border: none;
+    border-bottom: 1px solid #eee;
+    font-size: 14px;
+  }
+
+  td:last-child {
+    border-bottom: none;
+  }
+
+  /* Label before each data cell */
+  td::before {
+    content: attr(data-label);
+    position: absolute;
+    left: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-weight: 700;
+    color: #537D5D;
+    white-space: nowrap;
+  }
+
+  /* Make delete button full width and nicely spaced */
+  td[data-label="Actions"] button {
+    width: 100%;
+    padding: 10px 0;
+    font-size: 15px;
+    border-radius: 6px;
+    box-shadow: none;
+  }
+}
+
+/* Extra small devices */
+@media (max-width: 480px) {
+  h1 {
+    font-size: 22px;
+  }
+
+  button {
+    font-size: 14px;
+  }
+}

@@ -1,0 +1,159 @@
+/* Container behaves like a table */
+.admin-header h1 {
+  margin-bottom: 6px; /* Adds space below h1 */
+}
+
+.admin-header p {
+  margin-top: 0;
+}
+
+main.container h1 {
+  margin-top: 2rem;
+  text-align: center;
+  font-size: 1.8rem;
+  color: #2C5530; /* or white if header is dark */
+}
+
+.feedback-table {
+  display: grid;
+  grid-template-rows: auto 1fr;
+  gap: 10px;
+  max-width: 1000px;
+  margin: 30px auto 0 auto;
+  font-family: "Inter";
+}
+
+/* Table header row */
+.table-header {
+  display: grid;
+  grid-template-columns: 1.5fr 1fr 1.5fr 3fr 1fr;
+  background-color: #8DB600;
+  color: white;
+  font-weight: 600;
+  border-radius: 8px;
+  padding: 12px 20px;
+  user-select: none;
+}
+
+/* Each header cell */
+.table-header > div {
+  padding: 0 10px;
+}
+
+/* Table body: scroll if too tall */
+.table-body {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+/* Each feedback row */
+.table-row {
+  display: grid;
+  grid-template-columns: 1.5fr 1fr 1.5fr 3fr 1fr;
+  background: #ffffff;
+  border: 2px solid #9EBC8A;
+  border-radius: 8px;
+  padding: 16px 20px;
+  align-items: center;
+  box-shadow: 0 3px 8px rgba(0,0,0,0.07);
+  word-wrap: break-word;
+}
+
+/* Each cell */
+.cell {
+  padding: 0 10px;
+  font-size: 0.9rem;
+  color: #2C5530;
+}
+
+/* Message cell: allow multiline text */
+.cell.message {
+  white-space: pre-wrap;
+}
+
+/* Actions cell: center delete button */
+.cell.actions {
+  display: flex;
+  justify-content: center;
+}
+
+/* Delete Button styling */
+.delete-btn {
+  background-color: #FF4444;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  padding: 8px 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.25s ease;
+  white-space: nowrap;
+}
+
+.delete-btn:hover {
+  background-color: #cc0000;
+}
+
+/* === Responsive adjustments === */
+@media (max-width: 900px) {
+  .table-header,
+  .table-row {
+    grid-template-columns: 1.5fr 1fr 2fr 2fr 1fr;
+  }
+
+  .cell.message {
+    white-space: normal;
+  }
+}
+
+@media (max-width: 600px) {
+  .table-header {
+    display: none; /* Hide header on very small screens */
+  }
+
+  .table-row {
+    grid-template-columns: 1fr;
+    grid-template-rows: auto auto auto auto auto;
+    padding: 12px 15px;
+    gap: 8px;
+  }
+
+  .cell {
+    padding: 0;
+    font-size: 0.85rem;
+  }
+
+  .cell.subject::before {
+    content: "Subject: ";
+    font-weight: 700;
+    color: #537D5D;
+  }
+
+  .cell.name::before {
+    content: "Name: ";
+    font-weight: 700;
+    color: #537D5D;
+  }
+
+  .cell.email::before {
+    content: "Email: ";
+    font-weight: 700;
+    color: #537D5D;
+  }
+
+  .cell.message::before {
+    content: "Message: ";
+    font-weight: 700;
+    color: #537D5D;
+  }
+
+  .cell.actions {
+    justify-content: flex-start;
+  }
+
+  .delete-btn {
+    width: 100%;
+    padding: 10px;
+  }
+}

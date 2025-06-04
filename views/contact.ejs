@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contact Us - Sherubtse Football Ground Booking</title>
+  <link rel="stylesheet" href="/css/styles.css">
+  <link rel="stylesheet" href="/css/contact.css">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  
+</head>
+<body>
+
+    <%- include('Partials/header') %>
+  
+  <section class="contact-section">
+  <div class="contact-container">
+    <h1>Contact Us</h1>
+    <p class="subtitle">
+      Have questions or need assistance?<br>
+      We're here to help. Reach out to us and we'll get back to you as soon as possible.
+    </p>
+
+    <div class="contact-content">
+      <!-- Contact Form -->
+      <div class="contact-form">
+        <h2>Get in Touch</h2>
+        <form action="/send-message" method="POST">
+          <input type="text" name="name" placeholder="Name" required>
+          <input type="email" name="email" placeholder="Email" required>
+          <input type="text" name="subject" placeholder="Subject" required>
+          <textarea name="message" placeholder="Message" rows="5" required></textarea>
+          <button type="submit">Send message</button>
+        </form>
+      </div>
+
+      <!-- Contact Info -->
+      <div class="contact-info">
+        <h2>Contact Information</h2>
+
+        <div class="info-item">
+          <div class="icon-box">
+            <i class="fas fa-location-dot"></i>
+          </div>
+          <div>
+            <strong>Location</strong><br>
+            Sherubtse College, Kanglung, Bhutan
+          </div>
+        </div>
+
+        <div class="info-item">
+          <div class="icon-box">
+            <i class="fas fa-phone-alt"></i>
+          </div>
+          <div>
+            <strong>Phone</strong><br>
+            +975 17123456
+          </div>
+        </div>
+
+        <div class="info-item">
+          <div class="icon-box">
+            <i class="fas fa-envelope"></i>
+          </div>
+          <div>
+            <strong>Email</strong><br>
+            contact@sherubtse.edu.bt
+          </div>
+        </div>
+
+        <div class="hours">
+          <strong>Operating Hours</strong><br>
+          Monday - Friday: 9:00 AM – 6:00 PM<br>
+          Saturday: 9:00 AM – 1:00 PM<br>
+          Sunday: Closed
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+    <%- include('Partials/footer') %>
+
+
+</body>
+</html>

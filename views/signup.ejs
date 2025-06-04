@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Sign Up | Sherubtse Football Ground Booking</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet"/>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background-color: #f5f5f5;
+    }
+
+    header {
+      background-color: #1a4d2e;
+      color: white;
+      padding: 15px 30px;
+      display: flex;
+      align-items: center;
+    }
+
+    header img {
+      height: 60px;
+      margin-right: 15px;
+      border-radius: 12px;
+    }
+
+    header h1 {
+      font-size: 18px;
+      font-weight: normal;
+    }
+
+    .main-content {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 50px 20px;
+      min-height: calc(100vh - 130px);
+    }
+
+    .signup-box {
+      background-color: white;
+      display: flex;
+      border-radius: 10px;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+      max-width: 960px;
+      width: 100%;
+      overflow: hidden;
+    }
+
+    .form-section {
+      flex: 1;
+      padding: 40px;
+    }
+
+    .form-section h2 {
+      color: #1a4d2e;
+      font-size: 24px;
+      margin-bottom: 10px;
+    }
+
+    .form-section p {
+      color: #444;
+      font-size: 14px;
+      margin-bottom: 30px;
+    }
+
+    .form-group {
+      margin-bottom: 20px;
+    }
+
+    .form-group label {
+      display: block;
+      margin-bottom: 6px;
+      font-weight: 600;
+      font-size: 14px;
+      color: #1a4d2e;
+    }
+
+    .form-group input,
+    .form-group select {
+      width: 100%;
+      padding: 12px;
+      border: 1px solid #b5d5b7;
+      border-radius: 6px;
+      font-size: 14px;
+    }
+
+    .form-group input:focus,
+    .form-group select:focus {
+      outline: none;
+      border-color: #1a4d2e;
+    }
+
+    .create-account-button {
+      width: 100%;
+      padding: 12px;
+      background-color: #1a4d2e;
+      color: white;
+      border: none;
+      border-radius: 6px;
+      font-weight: 600;
+      font-size: 15px;
+      cursor: pointer;
+    }
+
+    .create-account-button:hover {
+      background-color: #166c3e;
+    }
+
+    .login-link {
+      text-align: center;
+      margin-top: 15px;
+      font-size: 14px;
+    }
+
+    .login-link a {
+      color: #1a4d2e;
+      text-decoration: none;
+      font-weight: 600;
+    }
+
+    .image-section {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+    }
+
+    .image-section img {
+      max-width: 300px;
+      width: 100%;
+      border-radius: 16px;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+    }
+
+    footer {
+      background-color: #1a4d2e;
+      color: white;
+      text-align: center;
+      padding: 10px;
+      font-size: 13px;
+    }
+
+    .error-message {
+      color: red;
+      font-size: 13px;
+      margin-top: 4px;
+      display: none;
+    }
+
+    @media (max-width: 768px) {
+      .signup-box {
+        flex-direction: column;
+      }
+
+      .image-section {
+        order: -1;
+        padding: 20px 0;
+      }
+
+      .image-section img {
+        max-width: 100%;
+        border-radius: 10px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <img src="images/logo.png" alt="Logo" />
+    <h1>Sherubtse Football Ground Booking</h1>
+  </header>
+
+  <main class="main-content">
+    <div class="signup-box">
+      <div class="form-section">
+        <h2>Create Your Account</h2>
+        <p>Join our community and start booking football grounds seamlessly.</p>
+
+        <form id="signupForm" action="/signup" method="POST" novalidate>
+          <div class="form-group">
+            <label for="name">Full Name</label>
+            <input id="name" type="text" name="name" placeholder="Enter your full name" required />
+            <div class="error-message" id="nameError">Only letters and spaces, at least 2 characters.</div>
+          </div>
+
+          <div class="form-group">
+            <label for="email">Email Address</label>
+            <input id="email" type="email" name="email" placeholder="07230011.sherubtse@rub.edu.bt" required />
+            <div class="error-message" id="emailError">Use a valid RUB student email.</div>
+          </div>
+
+          <div class="form-group">
+            <label for="course">Course</label>
+            <input id="course" type="text" name="course" placeholder="e.g., BSc IT" required />
+            <div class="error-message" id="courseError">Course is required.</div>
+          </div>
+
+          <div class="form-group">
+            <label for="year">Year</label>
+            <select id="year" name="year" required>
+              <option value="">Select Year</option>
+              <option value="1">1st Year</option>
+              <option value="2">2nd Year</option>
+              <option value="3">3rd Year</option>
+              <option value="4">4th Year</option>
+            </select>
+            <div class="error-message" id="yearError">Please select a valid year (1–4).</div>
+          </div>
+
+          <div class="form-group">
+            <label for="password">Password</label>
+            <input id="password" type="password" name="password" placeholder="Enter your password" required />
+            <div class="error-message" id="passwordError">At least 6 characters with letters and numbers.</div>
+          </div>
+
+          <div class="form-group">
+            <label for="confirmPassword">Confirm Password</label>
+            <input id="confirmPassword" type="password" name="confirmPassword" placeholder="Confirm your password" required />
+            <div class="error-message" id="confirmError">Passwords do not match.</div>
+          </div>
+
+          <button type="submit" class="create-account-button">Create account</button>
+
+          <div class="login-link">
+            Already have an account? <a href="/login">Log In</a>
+          </div>
+        </form>
+      </div>
+
+      <div class="image-section">
+        <img src="images/football-girls.png" alt="Football Match" />
+      </div>
+    </div>
+  </main>
+
+  <footer>
+    &copy; 2025 Sherubtse Football Ground. All rights reserved.
+  </footer>
+
+  <script>
+    const form = document.getElementById('signupForm');
+    const nameInput = document.getElementById('name');
+    const emailInput = document.getElementById('email');
+    const courseInput = document.getElementById('course');
+    const yearInput = document.getElementById('year');
+    const passwordInput = document.getElementById('password');
+    const confirmInput = document.getElementById('confirmPassword');
+
+    const nameError = document.getElementById('nameError');
+    const emailError = document.getElementById('emailError');
+    const courseError = document.getElementById('courseError');
+    const yearError = document.getElementById('yearError');
+    const passwordError = document.getElementById('passwordError');
+    const confirmError = document.getElementById('confirmError');
+
+    form.addEventListener('submit', function (e) {
+      let valid = true;
+
+      if (!/^[A-Za-z\s]{2,}$/.test(nameInput.value.trim())) {
+        nameError.style.display = 'block';
+        valid = false;
+      } else nameError.style.display = 'none';
+
+      if (!/^07\d{6}\.sherubtse@rub\.edu\.bt$/.test(emailInput.value.trim())) {
+        emailError.style.display = 'block';
+        valid = false;
+      } else emailError.style.display = 'none';
+
+      if (!courseInput.value.trim()) {
+        courseError.style.display = 'block';
+        valid = false;
+      } else courseError.style.display = 'none';
+
+      if (!['1', '2', '3', '4'].includes(yearInput.value)) {
+        yearError.style.display = 'block';
+        valid = false;
+      } else yearError.style.display = 'none';
+
+      if (!/(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{6,}/.test(passwordInput.value)) {
+        passwordError.style.display = 'block';
+        valid = false;
+      } else passwordError.style.display = 'none';
+
+      if (confirmInput.value !== passwordInput.value || confirmInput.value === '') {
+        confirmError.style.display = 'block';
+        valid = false;
+      } else confirmError.style.display = 'none';
+
+      if (!valid) e.preventDefault();
+    });
+  </script>
+</body>
+</html>

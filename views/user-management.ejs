@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Users Management</title>
+  <link rel="stylesheet" href="/css/admin.css" />
+  <link rel="stylesheet" href="/css/user-management.css" />
+</head>
+<body>
+
+  <%- include('Partials/admin-header') %>
+
+  <main class="container">
+    <h1>Registered Students</h1>
+
+    <table>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Course</th>
+          <th>Year</th>
+          <th>Email</th>
+          <th>Verified</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% users.forEach(user => { %>
+          <tr>
+            <td data-label="Name"><%= user.name %></td>
+            <td data-label="Course"><%= user.course %></td>
+            <td data-label="Year"><%= user.year %></td>
+            <td data-label="Email"><%= user.email %></td>
+            <td data-label="Verified"><%= user.verified ? 'Yes' : 'No' %></td>
+            <td data-label="Actions">
+              <form action="/admin/users/delete/<%= user.id %>" method="POST" onsubmit="return confirm('Are you sure you want to delete this user?');">
+                <button type="submit">Delete</button>
+              </form>
+            </td>
+          </tr>
+        <% }) %>
+      </tbody>
+    </table>
+  </main>
+
+  <%- include('Partials/admin-footer') %>
+
+</body>
+</html>
