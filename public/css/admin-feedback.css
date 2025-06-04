@@ -17,6 +17,7 @@ main.container h1 {
 .no-feedback {
   font-size: 18px;
   color: #666;
+  text-align: center;
 }
 
 .feedback-table {
