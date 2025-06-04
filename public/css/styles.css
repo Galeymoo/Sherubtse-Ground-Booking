@@ -8,7 +8,6 @@ body {
 }
 
 /* ===== Header ===== */
-/* ===== Header ===== */
 header {
   background-color: #2C5530;
   color: #fff;
@@ -21,7 +20,6 @@ header {
   top: 0;
   z-index: 1000;
 }
-
 
 /* Header left container: logo + title */
 .header-left {
@@ -53,11 +51,7 @@ header {
   display: none;
 }
 
-.hamburger.hidden {
-  display: none;
-}
-
-/* ===== Navigation Menu ===== */
+/* ===== Navigation ===== */
 nav {
   display: flex;
   gap: 1.5rem;
@@ -244,22 +238,22 @@ footer {
   }
 
   header {
-  flex-direction: column;
-  align-items: stretch;
-}
+    flex-direction: column;
+    align-items: stretch;
+  }
 
-.header-left {
-  flex-direction: row;
-  justify-content: space-between;
-  align-items: center;
-  width: 100%;
-}
+  .header-left {
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+  }
 
-.header-left h1 {
-  font-size: 16px;
-  white-space: normal;
-  text-align: left;
-  margin-top: 0.5rem;
-  padding-left: 0.5rem;
-}
+  .header-left h1 {
+    font-size: 16px;
+    white-space: normal;
+    text-align: left;
+    margin-top: 0.5rem;
+    padding-left: 0.5rem;
+  }
 }
