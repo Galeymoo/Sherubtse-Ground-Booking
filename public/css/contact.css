@@ -19,6 +19,7 @@ body {
   max-width: 1200px;
   width: 100%;
   margin: auto;
+  padding: 0 1rem; /* Responsive side padding */
 }
 
 h1 {
@@ -49,6 +50,7 @@ h1 {
   padding: 2rem;
   border-radius: 8px;
   box-shadow: 0 0 10px rgba(0,0,0,0.05);
+  box-sizing: border-box;
 }
 
 .contact-form h2,
@@ -126,10 +128,12 @@ h1 {
   line-height: 1.4;
 }
 
-/* Responsive Design */
+/* ==================== Responsive Design ==================== */
+
 @media (max-width: 768px) {
   .contact-content {
     flex-direction: column;
+    gap: 1.5rem;
   }
 
   .contact-section {
@@ -138,7 +142,14 @@ h1 {
 
   .contact-form,
   .contact-info {
-    padding: 1.5rem;
+    width: 100%;
+    padding: 1.25rem;
+  }
+
+  .contact-form h2,
+  .contact-info h2 {
+    font-size: 1.2rem;
+    text-align: center;
   }
 
   h1 {
@@ -147,22 +158,20 @@ h1 {
 
   .contact-form input,
   .contact-form textarea {
-    font-size: 0.95rem;
+    font-size: 1rem;
+    padding: 0.65rem;
   }
 
   .contact-form button {
     width: 100%;
+    padding: 0.75rem;
+    font-size: 1rem;
   }
 }
 
 @media (max-width: 480px) {
-  .icon-box {
-    width: 36px;
-    height: 36px;
-  }
-
-  .icon-box i {
-    font-size: 1rem;
+  .contact-section {
+    padding: 1rem 0.5rem;
   }
 
   .contact-form,
@@ -170,17 +179,34 @@ h1 {
     padding: 1rem;
   }
 
+  .contact-form h2,
+  .contact-info h2 {
+    font-size: 1rem;
+  }
+
   .contact-form input,
   .contact-form textarea {
     font-size: 0.9rem;
+    padding: 0.6rem;
   }
 
   .contact-form button {
     font-size: 0.95rem;
+    padding: 0.7rem;
   }
 
   .info-item {
     flex-direction: column;
+    gap: 0.5rem;
     align-items: flex-start;
+  }
+
+  .icon-box {
+    width: 34px;
+    height: 34px;
+  }
+
+  .icon-box i {
+    font-size: 1rem;
   }
 }
