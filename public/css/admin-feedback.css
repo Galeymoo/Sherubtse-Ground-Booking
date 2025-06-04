@@ -14,6 +14,11 @@ main.container h1 {
   color: #2C5530; /* or white if header is dark */
 }
 
+.no-feedback {
+  font-size: 18px;
+  color: #666;
+}
+
 .feedback-table {
   display: grid;
   grid-template-rows: auto 1fr;
