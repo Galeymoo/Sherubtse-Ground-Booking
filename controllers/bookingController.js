@@ -2,28 +2,19 @@ const { GroundSlot, Booking, User } = require('../models');
 
 const { Op } = require('sequelize');
 
-const moment = require('moment-timezone');
-
+// Show booking page with all slots and existing bookings
 exports.showBookingPage = async (req, res) => {
   try {
-    const user = req.session.user;
-    const userId = user?.id || null;
-
-    const currentTime = moment.utc().toDate();
+    const userId = req.session.user?.id || null;
 
     const allSlots = await GroundSlot.findAll({
       where: {
         visibleFrom: {
-          [Op.lte]: currentTime
+          [Op.lte]: new Date()
         }
       },
-      order: [['day', 'ASC'], ['startTime', 'ASC']],
+      order: [['day', 'ASC'], ['startTime', 'ASC']]
     });
-
-    console.log("Current Time:", currentTime);
-    console.log("Slots found:", allSlots.length);
-
-    const allSlotsRaw = allSlots.map(s => s.toJSON());
 
     const bookedSlots = await Booking.findAll({
       include: [GroundSlot],
@@ -31,10 +22,9 @@ exports.showBookingPage = async (req, res) => {
     });
 
     res.render('booking', {
-      availableSlots: allSlotsRaw,
+      availableSlots: allSlots, // Show all slots regardless of booking
       bookedSlots,
-      userId,
-      user
+      userId
     });
 
   } catch (err) {
