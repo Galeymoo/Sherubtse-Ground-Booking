@@ -1,11 +1,10 @@
 const { GroundSlot, Booking, User } = require('../models');
-
 const { Op } = require('sequelize');
 
 // Show booking page with all slots and existing bookings
 exports.showBookingPage = async (req, res) => {
   try {
-    const userId = req.session.user?.id || null;
+    const user = req.session.user || null; // ✅ Get full user object
 
     const allSlots = await GroundSlot.findAll({
       where: {
@@ -22,9 +21,9 @@ exports.showBookingPage = async (req, res) => {
     });
 
     res.render('booking', {
-      availableSlots: allSlots, // Show all slots regardless of booking
+      availableSlots: allSlots,
       bookedSlots,
-      userId
+      user // ✅ Pass full user object to view
     });
 
   } catch (err) {
@@ -97,15 +96,15 @@ exports.rejectBooking = async (req, res) => {
     res.status(500).send("Failed to reject booking");
   }
 };
-// In your admin route/controller
+
+// Admin slot management page
 exports.showAdminSlotManagement = async (req, res) => {
   try {
-    // Assuming `slots` is defined somewhere or fetched before
     const slots = await GroundSlot.findAll();
 
     const pendingBookings = await Booking.findAll({
       where: { status: 'pending' },
-      include: [User, GroundSlot], // make sure you have User model imported
+      include: [User, GroundSlot],
       order: [['createdAt', 'ASC']]
     });
 
