@@ -31,7 +31,5 @@ router.post('/admin/bookings/:id/approve', adminController.approveBooking);
 // Reject a booking
 router.post('/admin/bookings/:id/reject', adminController.rejectBooking);
 
-// Delete a booking
-router.post('/admin/bookings/:id/delete', adminController.deleteBooking);
 
 module.exports = router;
