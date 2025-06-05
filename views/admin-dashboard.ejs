@@ -8,6 +8,7 @@
   <!-- Your existing CSS -->
   <link rel="stylesheet" href="/css/admin.css" />
   <link rel="stylesheet" href="/css/admin-dashboard.css" />
+
 </head>
 <body>
   <%- include('Partials/admin-header') %>
@@ -95,7 +96,7 @@
             <th>User</th>
             <th>Ground Slot</th>
             <th>Status</th>
-            <th>Actions</th>
+            <th style="min-width: 140px;">Actions</th>
           </tr>
         </thead>
         <tbody>
@@ -113,21 +114,23 @@
                 <%= booking.GroundSlot ? booking.GroundSlot.startTime + ' - ' + booking.GroundSlot.endTime : '' %>
               </td>
               <td class="status-<%= booking.status.toLowerCase() %>"><%= booking.status %></td>
-              <td>
-                <% if (booking.status.toLowerCase() === 'pending') { %>
-                  <form method="POST" action="/admin/bookings/<%= booking.id %>/approve" style="display:inline;">
-                    <button type="submit" class="edit">
-                      <i class="fa-solid fa-check"></i> Approve
-                    </button>
-                  </form>
-                  <form method="POST" action="/admin/bookings/<%= booking.id %>/reject" style="display:inline;">
-                    <button type="submit" class="edit" style="background-color: #ccc;">
-                      <i class="fa-solid fa-xmark"></i> Reject
-                    </button>
-                  </form>
-                <% } else { %>
-                  <span style="color: gray;"><%= booking.status %></span>
-                <% } %>
+              <td style="min-width: 140px;">
+                <div class="action-wrapper">
+                  <% if (booking.status.toLowerCase() === 'pending') { %>
+                    <form method="POST" action="/admin/bookings/<%= booking.id %>/approve" style="display:inline;">
+                      <button type="submit" class="action-btn">
+                        <i class="fa-solid fa-check"></i> Approve
+                      </button>
+                    </form>
+                    <form method="POST" action="/admin/bookings/<%= booking.id %>/reject" style="display:inline;">
+                      <button type="submit" class="action-btn reject-btn">
+                        <i class="fa-solid fa-xmark"></i> Reject
+                      </button>
+                    </form>
+                  <% } else { %>
+                    <div class="status-label"><%= booking.status %></div>
+                  <% } %>
+                </div>
               </td>
             </tr>
           <% }) %>
