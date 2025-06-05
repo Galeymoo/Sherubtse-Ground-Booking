@@ -5,7 +5,8 @@ const { Op } = require('sequelize');
 // Show booking page with all slots and existing bookings
 exports.showBookingPage = async (req, res) => {
   try {
-    const userId = req.session.user?.id || null;
+    const user = req.session.user;
+    const userId = user?.id || null;
 
     const allSlots = await GroundSlot.findAll({
       where: {
@@ -22,9 +23,10 @@ exports.showBookingPage = async (req, res) => {
     });
 
     res.render('booking', {
-      availableSlots: allSlots, // Show all slots regardless of booking
+      availableSlots: allSlots,
       bookedSlots,
-      userId
+      userId,
+      user // ✅ Pass full user object for EJS
     });
 
   } catch (err) {
@@ -32,6 +34,7 @@ exports.showBookingPage = async (req, res) => {
     res.status(500).send("Internal Server Error");
   }
 };
+
 
 // Handle slot booking
 exports.bookSlot = async (req, res) => {
