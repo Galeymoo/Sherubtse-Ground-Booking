@@ -6,23 +6,6 @@
   <title>Ground Booking</title>
   <link rel="stylesheet" href="/css/styles.css"/>
   <link rel="stylesheet" href="/css/my-bookings.css"/>
-  <style>
-    .tabs { display: flex; gap: 1rem; margin-bottom: 1rem; }
-    .tab { padding: 0.5rem 1rem; cursor: pointer; border: 1px solid #ccc; border-radius: 5px; }
-    .tab.active { background: #007bff; color: white; }
-    .table-card { display: none; }
-    .table-card.active { display: block; }
-    .overlay-form { display: none; position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(0,0,0,0.5); justify-content: center; align-items: center; z-index: 1000; }
-    .overlay-form.active { display: flex; }
-    .overlay-content { background: white; padding: 2rem; border-radius: 8px; width: 300px; }
-    .overlay-actions { display: flex; justify-content: space-between; margin-top: 1rem; }
-    .cancel { background: red; color: white; }
-    table { width: 100%; border-collapse: collapse; }
-    th, td { padding: 0.75rem; border: 1px solid #ccc; text-align: center; }
-    .status-approved { color: green; }
-    .status-rejected { color: red; }
-    .status-pending { color: orange; }
-  </style>
 </head>
 <body>
   <%- include('Partials/header') %>
@@ -54,8 +37,8 @@
               <% availableSlots.forEach(slot => { %>
                 <tr>
                   <td><%= slot.day %></td>
-                  <td><%= new Date(slot.startTime).toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit' }) %></td>
-                  <td><%= new Date(slot.endTime).toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit' }) %></td>
+                  <td><%= slot.startTime %></td>
+                  <td><%= slot.endTime %></td>
                   <td>
                     <button onclick="toggleForm('<%= slot.id %>')">Book</button>
 
@@ -107,8 +90,8 @@
                   <td><%= b.course %></td>
                   <td><%= b.year %></td>
                   <td><%= b.GroundSlot?.day || 'N/A' %></td>
-                  <td><%= new Date(b.GroundSlot?.startTime).toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit' }) || 'N/A' %></td>
-                  <td><%= new Date(b.GroundSlot?.endTime).toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit' }) || 'N/A' %></td>
+                  <td><%= b.GroundSlot?.startTime || 'N/A' %></td>
+                  <td><%= b.GroundSlot?.endTime || 'N/A' %></td>
                   <td class="status-<%= b.status.toLowerCase() %>"><%= b.status %></td>
                 </tr>
               <% }) %>
@@ -146,4 +129,3 @@
   </script>
 </body>
 </html>
-
