@@ -40,23 +40,32 @@
                   <td><%= slot.startTime %></td>
                   <td><%= slot.endTime %></td>
                   <td>
-                    <button onclick="toggleForm('<%= slot.id %>')">Book</button>
+                    <% const alreadyBooked = bookedByUser.some(b => b.GroundSlotId === slot.id); %>
 
-                    <!-- Overlay Form -->
-                    <div class="overlay-form" id="form-<%= slot.id %>">
-                      <div class="overlay-content">
-                        <form action="/booking/book/<%= slot.id %>" method="POST">
-                          <h4>Book Slot</h4>
-                          <input type="text" name="name" placeholder="Your Name" value="<%= user?.name || '' %>" required />
-                          <input type="text" name="course" placeholder="Course" value="<%= user?.course || '' %>" required />
-                          <input type="text" name="year" placeholder="Year" value="<%= user?.year || '' %>" required />
-                          <div class="overlay-actions">
-                            <button type="submit">Submit</button>
-                            <button type="button" class="cancel" onclick="toggleForm('<%= slot.id %>')">Cancel</button>
-                          </div>
-                        </form>
+                    <% if (alreadyBooked) { %>
+                      <div style="display: flex; flex-direction: column; align-items: start;">
+                        <button disabled style="opacity: 0.6; cursor: not-allowed;">Booked</button>
+                        <small style="color: red; margin-top: 4px;">You’ve already booked this slot</small>
                       </div>
-                    </div>
+                    <% } else { %>
+                      <button onclick="toggleForm('<%= slot.id %>')">Book</button>
+
+                      <!-- Overlay Form -->
+                      <div class="overlay-form" id="form-<%= slot.id %>">
+                        <div class="overlay-content">
+                          <form action="/booking/book/<%= slot.id %>" method="POST">
+                            <h4>Book Slot</h4>
+                            <input type="text" name="name" placeholder="Your Name" value="<%= user?.name || '' %>" required />
+                            <input type="text" name="course" placeholder="Course" value="<%= user?.course || '' %>" required />
+                            <input type="text" name="year" placeholder="Year" value="<%= user?.year || '' %>" required />
+                            <div class="overlay-actions">
+                              <button type="submit">Submit</button>
+                              <button type="button" class="cancel" onclick="toggleForm('<%= slot.id %>')">Cancel</button>
+                            </div>
+                          </form>
+                        </div>
+                      </div>
+                    <% } %>
                   </td>
                 </tr>
               <% }) %>
