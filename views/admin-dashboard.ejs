@@ -114,7 +114,7 @@
               </td>
               <td class="status-<%= booking.status.toLowerCase() %>"><%= booking.status %></td>
               <td>
-                <% if (booking.status === 'pending') { %>
+                <% if (booking.status.toLowerCase() === 'pending') { %>
                   <form method="POST" action="/admin/bookings/<%= booking.id %>/approve" style="display:inline;">
                     <button type="submit" class="edit">
                       <i class="fa-solid fa-check"></i> Approve
@@ -126,7 +126,7 @@
                     </button>
                   </form>
                 <% } else { %>
-                  <span style="color: gray;">No actions available</span>
+                  <span style="color: gray;"><%= booking.status %></span>
                 <% } %>
               </td>
             </tr>
