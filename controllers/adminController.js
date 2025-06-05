@@ -216,20 +216,3 @@ exports.rejectBooking = async (req, res) => {
   }
 };
 
-// Delete a booking by ID
-exports.deleteBooking = async (req, res) => {
-  try {
-    const { id } = req.params;
-
-    const deleted = await Booking.destroy({ where: { id } });
-
-    if (!deleted) {
-      return res.status(404).send("Booking not found");
-    }
-
-    res.redirect('/admin-dashboard');
-  } catch (err) {
-    console.error('Error deleting booking:', err);
-    res.status(500).send('Server Error');
-  }
-};
