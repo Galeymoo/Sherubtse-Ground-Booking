@@ -22,75 +22,84 @@
       <!-- Available Slots Table -->
       <div class="table-card active" id="available">
         <h3>Available Ground Slots</h3>
-        <table>
-          <thead>
-            <tr>
-              <th>Day</th>
-              <th>Start</th>
-              <th>End</th>
-              <th>Book Slot</th>
-            </tr>
-          </thead>
-          <tbody>
-            <% availableSlots.forEach(slot => { %>
-              <tr>
-                <td><%= slot.day %></td>
-                <td><%= slot.startTime %></td>
-                <td><%= slot.endTime %></td>
-                <td>
-                  <button onclick="toggleForm('<%= slot.id %>')">Book</button>
 
-                  <!-- Overlay Form -->
-                  <div class="overlay-form" id="form-<%= slot.id %>">
-                    <div class="overlay-content">
-                      <form action="/booking/book/<%= slot.id %>" method="POST">
-                        <h4>Book Slot</h4>
-                        <input type="text" name="name" placeholder="Your Name" value="<%= user.name %>" required />
-                        <input type="text" name="course" placeholder="Course" value="<%= user.course %>" required />
-                        <input type="text" name="year" placeholder="Year" value="<%= user.year %>" required />
-                        <div class="overlay-actions">
-                          <button type="submit">Submit</button>
-                          <button type="button" class="cancel" onclick="toggleForm('<%= slot.id %>')">Cancel</button>
-                        </div>
-                      </form>
-                    </div>
-                  </div>
-                </td>
+        <% if (availableSlots.length > 0) { %>
+          <table>
+            <thead>
+              <tr>
+                <th>Day</th>
+                <th>Start</th>
+                <th>End</th>
+                <th>Book Slot</th>
               </tr>
-            <% }) %>
-          </tbody>
-        </table>
+            </thead>
+            <tbody>
+              <% availableSlots.forEach(slot => { %>
+                <tr>
+                  <td><%= slot.day %></td>
+                  <td><%= slot.startTime %></td>
+                  <td><%= slot.endTime %></td>
+                  <td>
+                    <button onclick="toggleForm('<%= slot.id %>')">Book</button>
+
+                    <!-- Overlay Form -->
+                    <div class="overlay-form" id="form-<%= slot.id %>">
+                      <div class="overlay-content">
+                        <form action="/booking/book/<%= slot.id %>" method="POST">
+                          <h4>Book Slot</h4>
+                          <input type="text" name="name" placeholder="Your Name" value="<%= user?.name || '' %>" required />
+                          <input type="text" name="course" placeholder="Course" value="<%= user?.course || '' %>" required />
+                          <input type="text" name="year" placeholder="Year" value="<%= user?.year || '' %>" required />
+                          <div class="overlay-actions">
+                            <button type="submit">Submit</button>
+                            <button type="button" class="cancel" onclick="toggleForm('<%= slot.id %>')">Cancel</button>
+                          </div>
+                        </form>
+                      </div>
+                    </div>
+                  </td>
+                </tr>
+              <% }) %>
+            </tbody>
+          </table>
+        <% } else { %>
+          <p>No ground slots are available at this time.</p>
+        <% } %>
       </div>
 
       <!-- Booked Slots Table -->
       <div class="table-card" id="booked">
         <h3>All Booked Slots</h3>
-        <table>
-          <thead>
-            <tr>
-              <th>Name</th>
-              <th>Course</th>
-              <th>Year</th>
-              <th>Day</th>
-              <th>Start</th>
-              <th>End</th>
-              <th>Status</th>
-            </tr>
-          </thead>
-          <tbody>
-            <% bookedSlots.forEach(b => { %>
+        <% if (bookedSlots.length > 0) { %>
+          <table>
+            <thead>
               <tr>
-                <td><%= b.name %></td>
-                <td><%= b.course %></td>
-                <td><%= b.year %></td>
-                <td><%= b.GroundSlot.day %></td>
-                <td><%= b.GroundSlot.startTime %></td>
-                <td><%= b.GroundSlot.endTime %></td>
-                <td class="status-<%= b.status.toLowerCase() %>"><%= b.status %></td>
+                <th>Name</th>
+                <th>Course</th>
+                <th>Year</th>
+                <th>Day</th>
+                <th>Start</th>
+                <th>End</th>
+                <th>Status</th>
               </tr>
-            <% }) %>
-          </tbody>
-        </table>
+            </thead>
+            <tbody>
+              <% bookedSlots.forEach(b => { %>
+                <tr>
+                  <td><%= b.name %></td>
+                  <td><%= b.course %></td>
+                  <td><%= b.year %></td>
+                  <td><%= b.GroundSlot?.day || 'N/A' %></td>
+                  <td><%= b.GroundSlot?.startTime || 'N/A' %></td>
+                  <td><%= b.GroundSlot?.endTime || 'N/A' %></td>
+                  <td class="status-<%= b.status.toLowerCase() %>"><%= b.status %></td>
+                </tr>
+              <% }) %>
+            </tbody>
+          </table>
+        <% } else { %>
+          <p>No bookings found yet.</p>
+        <% } %>
       </div>
 
     </div>
@@ -101,7 +110,7 @@
   <script>
     function toggleForm(slotId) {
       const form = document.getElementById('form-' + slotId);
-      form.classList.toggle('active');
+      if (form) form.classList.toggle('active');
     }
 
     // Tab switching logic
