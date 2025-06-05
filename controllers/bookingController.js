@@ -4,7 +4,7 @@ const { Op } = require('sequelize');
 // Show booking page with all slots and existing bookings
 exports.showBookingPage = async (req, res) => {
   try {
-    const user = req.session.user || null; // ✅ Get full user object
+    const user = req.session.user || null;
 
     const allSlots = await GroundSlot.findAll({
       where: {
@@ -20,10 +20,15 @@ exports.showBookingPage = async (req, res) => {
       order: [['createdAt', 'DESC']]
     });
 
+    const bookedByUser = user
+      ? await Booking.findAll({ where: { userId: user.id } })
+      : [];
+
     res.render('booking', {
       availableSlots: allSlots,
       bookedSlots,
-      user // ✅ Pass full user object to view
+      user,
+      bookedByUser // ✅ pass to EJS
     });
 
   } catch (err) {
@@ -39,13 +44,24 @@ exports.bookSlot = async (req, res) => {
     const groundSlotId = req.params.id;
     const { name, course, year } = req.body;
 
+    const existingBooking = await Booking.findOne({
+      where: {
+        userId,
+        GroundSlotId: groundSlotId
+      }
+    });
+
+    if (existingBooking) {
+      return res.redirect('/booking'); // prevent duplicate
+    }
+
     await Booking.create({
       name,
       course,
       year,
       userId,
       GroundSlotId: groundSlotId,
-      status: 'Pending' // new bookings are always pending
+      status: 'Pending'
     });
 
     res.redirect('/booking');
@@ -54,6 +70,7 @@ exports.bookSlot = async (req, res) => {
     res.status(500).send("Failed to book slot");
   }
 };
+
 
 // Admin approves a booking
 exports.approveBooking = async (req, res) => {
