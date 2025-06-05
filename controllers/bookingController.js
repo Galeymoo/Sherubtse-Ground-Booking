@@ -9,7 +9,7 @@ exports.showBookingPage = async (req, res) => {
     const user = req.session.user;
     const userId = user?.id || null;
 
-    const currentTime = moment().tz('Asia/Thimphu').toDate();
+    const currentTime = moment.utc().toDate();
 
     const allSlots = await GroundSlot.findAll({
       where: {
@@ -17,19 +17,21 @@ exports.showBookingPage = async (req, res) => {
           [Op.lte]: currentTime
         }
       },
-      order: [['day', 'ASC'], ['startTime', 'ASC']]
+      order: [['day', 'ASC'], ['startTime', 'ASC']],
     });
+
+    console.log("Current Time:", currentTime);
+    console.log("Slots found:", allSlots.length);
+
+    const allSlotsRaw = allSlots.map(s => s.toJSON());
 
     const bookedSlots = await Booking.findAll({
       include: [GroundSlot],
       order: [['createdAt', 'DESC']]
     });
 
-    console.log("Current time:", currentTime);
-    console.log("Fetched slots:", allSlots.map(s => ({ id: s.id, visibleFrom: s.visibleFrom })));
-
     res.render('booking', {
-      availableSlots: allSlots,
+      availableSlots: allSlotsRaw,
       bookedSlots,
       userId,
       user
@@ -40,8 +42,6 @@ exports.showBookingPage = async (req, res) => {
     res.status(500).send("Internal Server Error");
   }
 };
-
-
 
 // Handle slot booking
 exports.bookSlot = async (req, res) => {
