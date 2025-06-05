@@ -2,16 +2,19 @@ const { GroundSlot, Booking, User } = require('../models');
 
 const { Op } = require('sequelize');
 
-// Show booking page with all slots and existing bookings
+const moment = require('moment-timezone');
+
 exports.showBookingPage = async (req, res) => {
   try {
     const user = req.session.user;
     const userId = user?.id || null;
 
+    const currentTime = moment().tz('Asia/Thimphu').toDate();
+
     const allSlots = await GroundSlot.findAll({
       where: {
         visibleFrom: {
-          [Op.lte]: new Date()
+          [Op.lte]: currentTime
         }
       },
       order: [['day', 'ASC'], ['startTime', 'ASC']]
@@ -22,11 +25,14 @@ exports.showBookingPage = async (req, res) => {
       order: [['createdAt', 'DESC']]
     });
 
+    console.log("Current time:", currentTime);
+    console.log("Fetched slots:", allSlots.map(s => ({ id: s.id, visibleFrom: s.visibleFrom })));
+
     res.render('booking', {
       availableSlots: allSlots,
       bookedSlots,
       userId,
-      user // ✅ Pass full user object for EJS
+      user
     });
 
   } catch (err) {
@@ -34,6 +40,7 @@ exports.showBookingPage = async (req, res) => {
     res.status(500).send("Internal Server Error");
   }
 };
+
 
 
 // Handle slot booking
