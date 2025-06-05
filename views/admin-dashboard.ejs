@@ -8,7 +8,6 @@
   <!-- Your existing CSS -->
   <link rel="stylesheet" href="/css/admin.css" />
   <link rel="stylesheet" href="/css/admin-dashboard.css" />
-
 </head>
 <body>
   <%- include('Partials/admin-header') %>
@@ -113,29 +112,22 @@
                 <%= booking.GroundSlot ? booking.GroundSlot.day : 'N/A' %> 
                 <%= booking.GroundSlot ? booking.GroundSlot.startTime + ' - ' + booking.GroundSlot.endTime : '' %>
               </td>
-              <td class="status-<%= booking.status %>"><%= booking.status %></td>
+              <td class="status-<%= booking.status.toLowerCase() %>"><%= booking.status %></td>
               <td>
-                <% if (booking.status !== 'approved') { %>
+                <% if (booking.status === 'pending') { %>
                   <form method="POST" action="/admin/bookings/<%= booking.id %>/approve" style="display:inline;">
                     <button type="submit" class="edit">
                       <i class="fa-solid fa-check"></i> Approve
                     </button>
                   </form>
-                <% } %>
-
-                <% if (booking.status !== 'rejected') { %>
                   <form method="POST" action="/admin/bookings/<%= booking.id %>/reject" style="display:inline;">
                     <button type="submit" class="edit" style="background-color: #ccc;">
                       <i class="fa-solid fa-xmark"></i> Reject
                     </button>
                   </form>
+                <% } else { %>
+                  <span style="color: gray;">No actions available</span>
                 <% } %>
-
-                <form method="POST" action="/admin/bookings/<%= booking.id %>/delete" onsubmit="return confirm('Are you sure you want to delete this booking?');" style="display:inline;">
-                  <button type="submit" class="delete">
-                    <i class="fa-solid fa-trash"></i> Delete
-                  </button>
-                </form>
               </td>
             </tr>
           <% }) %>
