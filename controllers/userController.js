@@ -13,5 +13,5 @@ exports.getUserDashboard = async (req, res) => {
     }
   });
 
-  res.render('booking', { title: 'Ground Bookings', slots: visibleSlots });
+  res.render('user-dashboard', { title: 'Ground Bookings', slots: visibleSlots });
 };
