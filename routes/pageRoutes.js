@@ -4,7 +4,7 @@ const express = require('express');
  const { isAuthenticated } = require('../middleware/authMiddleware');
  // Render the landing page
  router.get('/', (req, res) => {
- res.render('index', { title: 'Student project showcase' });
+ res.render('index', { title: 'Ground Booking' });
  });
 
 router.get('/contact', pageController.getContactPage);
