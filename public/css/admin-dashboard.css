@@ -411,13 +411,19 @@ table tr:nth-child(even) {
   }
 }
 /* --- Action Buttons: Approve & Reject --- */
+.action-wrapper {
+  display: flex;
+  gap: 6px; /* optional, spacing between buttons */
+  flex-wrap: nowrap; /* keep buttons side by side */
+}
+
 .action-wrapper form {
   display: inline-block;
   margin: 2px;
 }
 
 .action-wrapper .action-btn {
-  background-color: #28a745; /* green */
+  background-color: #8DB600; /* green */
   color: white;
   border: none;
   padding: 6px 12px;
